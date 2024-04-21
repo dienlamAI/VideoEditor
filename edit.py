@@ -347,4 +347,116 @@ class VideoEditor:
         end_time = start_time + duration
         return self.video.subclip(start_time, end_time)
     
+    # Chia nhỏ video thành các khung hình 
+    def split_frames(self, fps):
+        return self.video.iter_frames(fps=fps)
+    
+    # Chuyển đổi video thành mảng các khung hình
+    def to_frames(self, fps):
+        return list(self.video.iter_frames(fps=fps))
+    
     # 
+    
+class Audio:
+    def __init__(self, audio_path):
+        self.audio = AudioFileClip(audio_path)
+    
+    # Cắt audio từ thời điểm bắt đầu đến thời điểm kết thúc
+    def cut(self, start_time, end_time):
+        self.audio = self.audio.subclip(start_time, end_time)
+        return self.audio
+    
+    # Tăng tốc độ của audio theo hệ số
+    def speedx(self, factor):
+        self.audio = self.audio.fx(vfx.speedx, factor)
+        return self.audio
+    
+    # Đóng audio
+    def close(self):
+        self.audio.close()
+    
+    # Lấy thời lượng của audio
+    def get_duration(self):
+        return self.audio.duration
+    
+    # Chuyển đổi định dạng của audio và lưu vào đường dẫn đích
+    def convert_format(self, output_format='mp3'):
+        output_path = "converted_audio." + output_format
+        self.audio.write_audiofile(output_path)
+        return output_path
+    
+    # Thêm hiệu ứng vào audio
+    def fx(self, fx, *args, **kwargs):
+        self.audio = self.audio.fx(fx, *args, **kwargs)
+        return self.audio
+    
+    # Lưu audio
+    def save(self, output_path):
+        self.audio.write_audiofile(output_path)
+        return self.audio
+    
+    # Thay đổi âm lượng của audio
+    def change_volume(self, volume):
+        self.audio = self.audio.volumex(volume)
+        return self.audio
+    
+    # Thêm hiệu ứng đậm dần vào và ra của audio
+    def fade_in_out(self, duration):
+        fade_in = self.audio.fadein(duration)
+        fade_out = self.audio.fadeout(duration)
+        self.audio = concatenate_audioclips([fade_in, self.audio, fade_out])
+        return self.audio
+    
+    # Tách audio từ video
+    def from_video(self, video_path):
+        video = VideoFileClip(video_path)
+        self.audio = video.audio
+        return self.audio
+    
+    # Làm nét audio
+    def sharpen(self, factor):
+        self.audio = self.audio.fx(vfx.sharpen, factor)
+        return self.audio
+
+    # Làm mờ audio
+    def blur(self, factor):
+        self.audio = self.audio.fx(vfx.blur, factor)
+        return self.audio
+    
+    # Tăng tốc độ audio
+    def speed_up(self, factor):
+        self.audio = self.audio.fx(vfx.speedx, factor)
+        return self.audio
+    
+    # Giảm tốc độ audio
+    def speed_down(self, factor):
+        self.audio = self.audio.fx(vfx.speedx, 1/factor)
+        return self.audio
+    
+    # Giảm nhiễu của audio
+    def reduce_noise(self):
+        self.audio = self.audio.fx(vfx.reduce_noise)
+        return self.audio
+    
+    # Thêm hiệu ứng đậm dần vào và ra của audio
+    def fade_in_out(self, fade_in_duration, fade_out_duration):
+        self.audio = fadein(self.audio, fade_in_duration)
+        self.audio = fadeout(self.audio, fade_out_duration)
+        return self.audio
+    
+    # Chia audio thành n phần
+    def split(self, n):
+        duration = self.audio.duration / n
+        audios = []
+        for i in range(n):
+            start_time = i * duration
+            end_time = (i + 1) * duration
+            audio = self.audio.subclip(start_time, end_time)
+            audios.append(audio)
+        return audios
+    
+    # Chọn ngẫu nhiên một phần của audio
+    def random_part(self, duration):
+        start_time = random.randint(0, self.audio.duration - duration)
+        end_time = start_time + duration
+        return self.audio.subclip(start_time, end_time)
