@@ -1,58 +1,58 @@
 # VideoEditor
 
-VideoEditor là công cụ chỉnh sửa video tự động, sử dụng thư viện MoviePy để thực hiện các tác vụ biên tập video dựa trên yêu cầu của người dùng. Tính năng nổi bật bao gồm khả năng trích xuất và thêm subtitle vào video một cách nhanh chóng và dễ dàng. VideoEditor hỗ trợ công nghệ AI tiên tiến từ OpenAI và có thể sử dụng WhisperModel để thực hiện các tác vụ liên quan đến ngôn ngữ.
+VideoEditor is an automated video editing tool that uses the MoviePy library to perform video editing tasks based on user requirements. Key features include the ability to extract and add subtitles to videos quickly and easily. VideoEditor leverages advanced AI technology from OpenAI and can use the WhisperModel for language-related tasks.
 
-## Tính Năng
+## Features
 
-- Trích xuất text từ subtitle của video.
-- Thêm subtitle vào video.
-- Sử dụng AI để cải thiện và tối ưu hóa quá trình biên tập video.
-- Edit video 1 cách nhanh chóng theo yêu cầu của người dùng
+- Extract text from video subtitles.
+- Add subtitles to videos.
+- Utilize AI to enhance and optimize the video editing process.
+- Edit videos quickly according to user specifications.
 
-## Cài Đặt
+## Installation
 
-Để sử dụng VideoEditor, hãy thực hiện theo các bước dưới đây:
+To use VideoEditor, follow these steps:
 
-### Bước 1: Clone Repository
+### Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/DienStudio/VideoEditor.git
 ```
 
-### Bước 2: Tạo Môi Trường Ảo
+### Step 2: Create a Virtual Environment
 
-Di chuyển vào thư mục VideoEditor:
+Navigate to the VideoEditor directory:
 
 ```bash
 cd VideoEditor
 ```
 
-Tạo môi trường ảo:
+Create a virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-### Bước 3: Kích Hoạt Môi Trường Ảo
+### Step 3: Activate the Virtual Environment
 
 ```bash
 .venv\Scripts\activate
 ```
 
-### Bước 4: Cài Đặt Các Gói Phụ Thuộc
+### Step 4: Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Bước 5: Chạy Ứng Dụng
+### Step 5: Run the Application
 
 ```bash
 py main.py
 ```
 
-## Lưu ý
+## Notes
 
-- Đảm bảo đã tải và cài đặt `magick.exe`. Gán đường link tới `IMAGEMAGICK_BINARY` trong file cấu hình để sử dụng các tính năng liên quan đến hình ảnh.
+- Ensure that `magick.exe` is downloaded and installed. Set the path to `IMAGEMAGICK_BINARY` in the configuration file to use image-related features.
 
-- Nếu không thể sử dụng OpenAI, bạn có thể thay thế bằng WhisperModel. Tuy nhiên, lưu ý rằng việc này có thể tốn nhiều thời gian hơn.
+- If OpenAI cannot be used, you can replace it with WhisperModel. However, note that this may take longer.
