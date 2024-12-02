@@ -16,7 +16,7 @@ To use VideoEditor, follow these steps:
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/DienStudio/VideoEditor.git
+git clone https://github.com/xndien2004/VideoEditor.git
 ```
 
 ### Step 2: Create a Virtual Environment
